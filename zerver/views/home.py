@@ -306,6 +306,7 @@ def home_real(request):
     product_name = "Zulip"
     page_params['product_name'] = product_name
     request._log_data['extra'] = "[%s]" % (register_ret["queue_id"],)
+    is_iframe = True if request.GET.get('is_iframe', None) else False
     response = render_to_response('zerver/index.html',
                                   {'user_profile': user_profile,
                                    'page_params': simplejson.encoder.JSONEncoderForHTML().encode(page_params),
@@ -319,7 +320,8 @@ def home_real(request):
                                    'show_webathena': user_profile.realm.webathena_enabled,
                                    'enable_feedback': settings.ENABLE_FEEDBACK,
                                    'embedded': narrow_stream is not None,
-                                   'product_name': product_name
+                                   'product_name': product_name,
+                                   'is_iframe': is_iframe
                                    },
                                   request=request)
     patch_cache_control(response, no_cache=True, no_store=True, must_revalidate=True)
