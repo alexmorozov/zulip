@@ -28,6 +28,10 @@
     text-align: center;
 }
 
+.is_iframe #compose_buttons {
+    display: none;
+}
+
 .compose_table .message_header_colorblock,
 .compose_table .message_header {
     box-shadow: none;

@@ -36,7 +36,7 @@
     {% endblock %}
 </head>
 
-<body>
+<body class="{% if is_iframe %}is_iframe{% endif %}">
 {% block content %}
 {% endblock %}
 </body>
